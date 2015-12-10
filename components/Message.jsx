@@ -3,7 +3,7 @@ Message = React.createClass({
   propTypes: {
     // This component gets the message to display through a React prop.
     // We can use propTypes to indicate it is required
-    task: React.PropTypes.object.isRequired
+    message: React.PropTypes.object.isRequired
   },
   render: function() {
     return (
