@@ -1,4 +1,4 @@
-const LoginButtons = BlazeToReact('loginButtons');
+var LoginButtons = BlazeToReact('loginButtons');
 
 MyNewTmpl = React.createClass({
   render: function() {

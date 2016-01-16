@@ -1,26 +1,21 @@
 HelloUser = React.createClass({
-  mixins: [ReactMeteorData],
-  getMeteorData: ()=> {
-    return {
-      currentUser: Meteor.user()
-    };
-  },
 
-  getUserEmail: function() {
-    // return Meteor.user().emails[0].address;
-    return this.props.data.currentUser.emails[0].address;
-  },
-
-
-  render:()=> {
-    return <div>
+  render: () => {
+    return( <div>
             <div className="container">
               <div className='row'>
                <div className='jumbotron col-md-6 col-md-offset-3'>
-                <h1>Hello {this.getUserEmail}!</h1>
+                <h2>Hello, {Meteor.user().emails[0].address}!</h2>
+                <h3>So now you can set your location to <br/>
+                chat with others: </h3>
+
+                <GeoComplete />
+
+
                </div>
               </div>
             </div>
-          </div>;
+          </div>
+        );
   }
 });

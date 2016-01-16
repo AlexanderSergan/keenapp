@@ -1,5 +1,5 @@
 // App - main component, represents whole app.
-MessagesList = React.createClass({
+ MessagesList = React.createClass({
   // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
 
@@ -10,24 +10,36 @@ MessagesList = React.createClass({
                 messages: Messages.find({}).fetch()
               };
   },
+  // getUserEmail : {
+  //   // return Meteor.user().emails[0].address;
+  //   return this.props.data.currentUser.emails[0].address;
+  // },
 
   handleSubmit: (event) => {
       event.preventDefault();
       var form = event.target;
       var content = form.querySelector('[name="messageInput"]').value;
-      console.log(content);
+      var email = Meteor.user().emails[0].address;
+
+      var hash = CryptoJS.MD5(email);
+      var userpicLink = 'http://www.gravatar.com/avatar/'+ hash +'?d=retro&s=300';
 
         Messages.insert({
+          userpicLink: userpicLink,
+          user: email,
           text: content,
           createdAt: new Date() // current time
         });
+
     // Clear form
-    // React.findDOMNode(this.refs.textInput).value = "";
+    form.querySelector('[name="messageInput"]').value = "";
   },
 
   renderMessages: function() {
               return this.data.messages.map( function(message)  {
-                return <Message key={message._id} message={message} />;
+                console.log('from renderMessages():\n'+ 'rendering message with id: ' + message._id);
+                console.log('and typeof id is ' + typeof message._id);
+                return <Message message={message} />;
               });
   },
 
@@ -36,13 +48,7 @@ MessagesList = React.createClass({
       <div>
       <div className="container">
           <div className='row'>
-              <div className='jumbotron col-md-10 col-md-offset-1'>
-
-
-
-
-                  <Flag />
-                  <Flag value='6' />
+              <div className='bs-example col-md-10 col-md-offset-1'>
 
                   {this.renderMessages()}
 
@@ -59,10 +65,7 @@ MessagesList = React.createClass({
                       </div>
                     </form>
                   </div>
-
-
               </div>
-
           </div>
       </div>
       </div>
