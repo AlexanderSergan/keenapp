@@ -10,6 +10,9 @@ HelloUser = React.createClass({
                 chat with others: </h3>
 
                 <GeoComplete />
+                <br />
+                   
+
 
 
                </div>

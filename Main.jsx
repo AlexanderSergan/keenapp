@@ -11,6 +11,6 @@ if (Meteor.isClient) {
     });
 
     // Use Meteor.startup to render the component after the page is ready
-    ReactDOM.render(<Messages />, document.getElementById("render-target"));
+      ReactDOM.render(<HelloUser />, document.getElementById('render-target'));
   });
 }
