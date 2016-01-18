@@ -9,13 +9,9 @@
   },
   componentDidMount: function() {
     var userLocation = Meteor.user().profile.currentLocation;
-    console.info('Usr location: ' + userLocation);
     userLocation = userLocation.split(',')[0];
-    console.info('Trimmed usr location: ' + userLocation);
     this.setState({location: userLocation});
   },
-
-  // Loads items from the Messages collection and puts them on this.data.messages
 
   getMeteorData: function() {
               var searchWord = this.state.location;
@@ -33,11 +29,9 @@
       var hash = CryptoJS.MD5(email);
       var userpicLink = 'http://www.gravatar.com/avatar/'+ hash +'?d=retro&s=300';
 
+
       var messageLocation = Meteor.user().profile.currentLocation.replace(/, /g, '.');
       messageLocation = messageLocation.split('.');
-      console.log('Trimmed messageLocation: ' + messageLocation);
-
-
 
         Messages.insert({
           userpicLink: userpicLink,
@@ -53,7 +47,7 @@
 
   renderMessages: function() {
               return this.data.messages.map( function(message)  {
-                console.log('from renderMessages():\n'+ 'rendering message: ' + message);
+
 
                 return <Message message={message} />;
               });

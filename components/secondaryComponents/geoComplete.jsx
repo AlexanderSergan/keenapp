@@ -2,13 +2,14 @@ GeoComplete = React.createClass({
 
   getInitialState: function() {
     return({
-      userLocation: Meteor.user().profile.currentLocation || 'not defined' 
+      userLocation: Meteor.user().profile.currentLocation || 'not defined'
     });
   },
 
   saveUserLocation: function(e) {
     // Meteor.users.update({});
     Meteor.users.update( { _id: Meteor.userId() },{$set: {'profile.currentLocation': this.state.userLocation}});
+    toastr.info(this.state.userLocation, 'Location set to');
   },
 
   componentDidMount: function() {
