@@ -2,8 +2,13 @@ GeoComplete = React.createClass({
 
   getInitialState: function() {
     return({
-      userLocation: 'not defined'
+      userLocation: Meteor.user().profile.currentLocation || 'not defined' 
     });
+  },
+
+  saveUserLocation: function(e) {
+    // Meteor.users.update({});
+    Meteor.users.update( { _id: Meteor.userId() },{$set: {'profile.currentLocation': this.state.userLocation}});
   },
 
   componentDidMount: function() {
@@ -16,9 +21,9 @@ GeoComplete = React.createClass({
             that.setState({
               userLocation: result.formatted_address
             });
-            console.log(this);
-            console.log(that);
-            console.log('userLocation set to ' + result.formatted_address +
+
+
+            console.info('userLocation set to ' + result.formatted_address +
             '\nand the result is ' + JSON.stringify(result) );
           });
     }
@@ -26,9 +31,10 @@ GeoComplete = React.createClass({
 
   render: function() {
     return(<div>
-      <input className='' id='geoInput'/>
+      <input className='col-md-6' id='geoInput'/>
       <h3>so chosen location is: <br />
       <span className='geoResult'>{this.state.userLocation}</span></h3>
+      <div onClick={this.saveUserLocation} className='btn btn-default'>Save</div>
 
     </div>);
   }
