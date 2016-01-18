@@ -15,17 +15,14 @@
     this.setState({location: userLocation});
   },
 
-  // Loads items from the Tasks collection and puts them on this.data.tasks
+  // Loads items from the Messages collection and puts them on this.data.messages
 
   getMeteorData: function() {
+              var searchWord = this.state.location;
               return {
-                messages: Messages.find( { $text: { $search: this.state.location} } ).fetch()
+                messages: Messages.find({'location': searchWord }).fetch()
               };
   },
-  // getUserEmail : {
-  //   // return Meteor.user().emails[0].address;
-  //   return this.props.data.currentUser.emails[0].address;
-  // },
 
   handleSubmit: (event) => {
       event.preventDefault();
@@ -36,12 +33,18 @@
       var hash = CryptoJS.MD5(email);
       var userpicLink = 'http://www.gravatar.com/avatar/'+ hash +'?d=retro&s=300';
 
+      var messageLocation = Meteor.user().profile.currentLocation.replace(/, /g, '.');
+      messageLocation = messageLocation.split('.');
+      console.log('Trimmed messageLocation: ' + messageLocation);
+
+
+
         Messages.insert({
           userpicLink: userpicLink,
           user: email,
           text: content,
           createdAt: new Date(), // current time
-          location: Meteor.user().profile.currentLocation
+          location: messageLocation
         });
 
     // Clear form
@@ -50,8 +53,8 @@
 
   renderMessages: function() {
               return this.data.messages.map( function(message)  {
-                console.log('from renderMessages():\n'+ 'rendering message with id: ' + message._id);
-                console.log('and typeof id is ' + typeof message._id);
+                console.log('from renderMessages():\n'+ 'rendering message: ' + message);
+
                 return <Message message={message} />;
               });
   },
