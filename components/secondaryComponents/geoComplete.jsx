@@ -10,7 +10,11 @@ GeoComplete = React.createClass({
     // Updating current user location in db
     Meteor.users.update({ _id: Meteor.userId() },
                         { $set: { 'profile.currentLocation': this.state.userLocation } });
-    toastr.info(this.state.userLocation, 'Location set to');
+
+    $.snackbar({
+      content: "Your current location set to " + this.state.userLocation,
+      style: "toast", timeout: 150
+    });
   },
 
   componentDidMount: function() {
