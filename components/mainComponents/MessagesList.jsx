@@ -37,7 +37,7 @@
           userpicLink: userpicLink,
           user: email,
           text: content,
-          createdAt: new Date(), // current time
+          createdAt: new Date(),
           location: messageLocation
         });
 
@@ -47,8 +47,6 @@
 
   renderMessages: function() {
               return this.data.messages.map( function(message)  {
-
-
                 return <Message message={message} />;
               });
   },
@@ -71,7 +69,7 @@
                                            name="messageInput"
                                            placeholder="type a message" />
                         <span className="input-group-btn">
-                          <button className="btn btn-default"  type="submit">Push!</button>
+                          <button className="btn btn-default" type="submit">Push!</button>
                         </span>
                       </div>
                     </form>

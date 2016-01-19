@@ -15,8 +15,12 @@
   cursor: pointer;
 }
 
-.delete-btn:hover {
+.delete-btn {
   opacity: 0.7;
+}
+
+.delete-btn:hover {
+  opacity: 0.4;
 }
 
 footer {
@@ -25,4 +29,9 @@ footer {
     padding-bottom: 10px;
     bottom: 0;
     width: 100%;
+}
+
+#ancii {
+  white-space: pre-wrap;
+      font-family: monospace;
 }

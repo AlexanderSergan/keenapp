@@ -5,13 +5,12 @@ DeleteButton = React.createClass({
 
   handleClick: function(event) {
     Messages.remove({_id: this.props.id});
-    // console.log('clicked!' + this.props.id);
   },
 
   render: function() {
            return (
               <span onClick={this.handleClick}
-                    className="glyphicon glyphicon-remove pointer pull-right"
+                    className="glyphicon glyphicon-remove pointer delete-btn pull-right"
                     aria-hidden="true">
                     </span>
            );

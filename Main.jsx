@@ -11,6 +11,7 @@ if (Meteor.isClient) {
     });
 
     // Use Meteor.startup to render the component after the page is ready
-      ReactDOM.render(<HelloUser />, document.getElementById('render-target'));
+    FlowRouter.go("/about");
+      // ReactDOM.render(<HelloUser />, document.getElementById('render-target'));
   });
 }

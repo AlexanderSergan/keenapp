@@ -5,7 +5,12 @@ FlowRouter.route('/', {
   action: () => {
     const containerElement = document.getElementById('render-target');
     setActive('HomeBtn');
-    ReactDOM.render(<HelloUser />, containerElement);
+    if (!!Meteor.user()) {
+      ReactDOM.render(<HelloUser />, containerElement);
+    } else {
+      ReactDom.render(<UnAuthorisedPage />, containerElement);
+    }
+
   }
 });
 
@@ -16,7 +21,7 @@ FlowRouter.route('/messages', {
     if (!!Meteor.user()) {
       ReactDOM.render(<MessagesList />, containerElement);
     } else {
-      ReactDOM.render(<UnAuthMessagesList />, containerElement);
+      ReactDOM.render(<UnAuthorisedPage />, containerElement);
     }
   }
 });

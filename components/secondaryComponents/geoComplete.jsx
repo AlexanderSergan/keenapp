@@ -11,13 +11,13 @@ GeoComplete = React.createClass({
     Meteor.users.update({ _id: Meteor.userId() },
                         { $set: { 'profile.currentLocation': this.state.userLocation } });
 
-    $.snackbar({
-      content: "Your current location set to " + this.state.userLocation,
-      style: "toast", timeout: 150
-    });
+    MDSnackbars.show({ text : 'Location set to ' + this.state.userLocation });
+    this.forceUpdate();
+
   },
 
   componentDidMount: function() {
+    MDSnackbars.init();
     var that = this;
     // Initialisation of geo input and this.state.userLocation
     if (GoogleMaps.loaded()) {
@@ -28,16 +28,23 @@ GeoComplete = React.createClass({
   },
 
   render: function() {
+    // var snackbarText = 'Location set to ' + this.state.userLocation;
     return (
       <div>
-        <input className='col-md-9' id='geoInput'/>
-        <h3>So chosen location is:
-          <span className='geoResult'> {this.state.userLocation}</span>
-        </h3>
-        <div onClick={this.saveUserLocation} className='btn btn-default'>Update!</div>
+        <div className="form-group">
+          <input className='col-md-9 form-control' id='geoInput'/>
+        </div>
+        <h4>Сurrent location:
+          <span> {Meteor.user().profile.currentLocation}</span>
+        </h4>
+        <a onClick={this.saveUserLocation}
+           className='btn btn-primary btn-raised'>Update!</a>
+
 
       </div>
     );
   }
 
 });
+// data-toggle='md-snackbar'
+// data-text={snackbarText}
