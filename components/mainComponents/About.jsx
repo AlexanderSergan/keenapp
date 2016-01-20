@@ -10,7 +10,7 @@ About = React.createClass({
                     enchancing skills in <a href='https://facebook.github.io/react/'>
                     React</a> and <a href='https://www.meteor.com/'>Meteor</a>.</p>
                     <p>Sources on GitHub: <a href='https://github.com/AlexanderSergan/keenapp'>link</a> </p>
-                    <p>List of open-source libraries used in the app: </p>
+                    <p>List of libraries used in the app: </p>
                     <ul>
                       <li><a href='https://github.com/FezVrasta/bootstrap-material-design'>FezVrasta:bootstrap-material-design</a>, MIT</li>
                       <li><a href='https://github.com/255kb/md-snackbars/'>255kb:md-snackbars</a>, MIT</li>
