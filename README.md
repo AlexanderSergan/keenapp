@@ -1,7 +1,7 @@
 # keenapp
 A small pet project made by way of better understanding and enchancing skills in React and Meteor.
 
-Demo: keenapp.meteor.com
+Demo: http://keenapp.meteor.com
 
 Libraries: 
   -  FezVrasta:bootstrap-material-design, MIT
